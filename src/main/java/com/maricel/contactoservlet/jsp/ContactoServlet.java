@@ -4,13 +4,15 @@
  */
 package com.maricel.contactoservlet.jsp;
 
+import com.maricel.dao.ContactoDAO;
+import com.maricel.dao.ContactoDAOImpl;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  *
@@ -18,24 +20,22 @@ import java.io.PrintWriter;
  */
 @WebServlet(urlPatterns="/ContactoServlet")
 public class ContactoServlet extends HttpServlet{
+    private ContactoDAO ContactoDAO;
+    
+    public ContactoServlet(){
+        super();
+        ContactoDAO = new ContactoDAOImpl();
+        
+        
+    }
+    
      @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         String nombre = req.getParameter("nombre");
          String emailId = req.getParameter("emailId");
           String telefono = req.getParameter("telefono");
            String descripcion = req.getParameter("descripcion");
-           resp.setContentType("text/html");
-            PrintWriter printWriter = resp.getWriter();
-             printWriter.print("<html>");
-              printWriter.print("<body");
-              printWriter.print("<h1> Datos de Registro de Contacto </h1>");
-               printWriter.print("<p>Nombre: "+nombre + "</p>");
-               printWriter.print("<p>Email: "+emailId + "</p>");
-               printWriter.print("<p>Telefono: "+telefono +"</p>");
-               printWriter.print("<p>Descripcion: "+descripcion +"</p>");
-               printWriter.print("</body>");
-                       printWriter.print("</html>");
-                       printWriter.close();
+           
                         
         
     }  
@@ -45,19 +45,46 @@ public class ContactoServlet extends HttpServlet{
            String apellido = req.getParameter("apellido");
             String email = req.getParameter("email");
              String descripcion = req.getParameter("descripcion");
-               resp.setContentType("text/html");
-            PrintWriter pw = resp.getWriter();
+              
+     }
+     protected void procesarSolicitud(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+         switch (request.getParameter("action")){
+             case "list":
+                 //this.list(resquest, response;
+                 break;
+             case "create":
+                 //this.create(resquest, response;
+                 break;
+             case "read":
+                 //this.read(resquest, response;
+                 break;
+             case "update":
+                 //this.update(resquest, response;
+                 break;
+             case "delete":
+                 //this.delete(resquest, response;
+                 break;
+             case "showRegister":
+                 //this.showResgister(resquest, response;
+                 break;
+             case "index":
+                 //this.index(resquest, response;
+                 defauld:
+                 //this.index(resquest, response;
+                 break;
+                     
+             
+             
+         }
+     }
             
-             pw.print("<html>");
-              pw.print("<body");
-              pw.print("<h1> Datos de Contacto </h1>");
-               pw.print("<p>Nombre: "+nombre + "</p>");
-               pw.print("<p>Apellido: "+apellido + "</p>");
-               pw.print("<p>Email: "+email+"</p>");
-               pw.print("<p>Descripcion: "+descripcion +"</p>");
-               pw.print("</body>");
-                       pw.print("</html>");
-                       pw.close();
-                        
+        private void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            dispatcher.forward(request, response);
+                 }
+
 }
-}
+
+
+

@@ -14,6 +14,7 @@ public class Contacto {
       private String apellido;
        private String email;
         private String descripcion;
+        private Integer id;
         
         //costructor vacio
         public Contacto(){
@@ -28,6 +29,32 @@ public class Contacto {
             this.nombre= name;
             
         }
-     
+         public String getApellido(){
+            return apellido;
+        }
+        public void setApellido(String apellido){
+            this.apellido= apellido;
+        }
+            
+             public String getEmail(){
+            return email;
+        }
+        public void setEmail(String email){
+            this.email= email;
+        }
+             public String getDescripcion(){
+            return descripcion;
+        }
+        public void setDescripcion(String descripcion){
+            this.descripcion= descripcion;
+            
+        }
+         public Integer getId(){
+            return id;
+        }
+        public void setId(Integer id){
+            this.id= id;
+        }
+        
     
 }
