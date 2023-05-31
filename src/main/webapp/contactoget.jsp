@@ -17,13 +17,16 @@
             <label>Nombre:</label>
             <input type="text" name="nombre">
             <br>
+            <label>Apellido:</label>
+            <input type="email" name="apellido">
+
             <label>Email:</label>
             <input type="email" name="emailId">
             <br>
             <label>Telefono:</label>
             <input type="text" name="telefono">
             <br>
-            <label>DESCRIPCION:</label>
+            <label>Descripcion:</label>
             <input type="text" name="descripcion">
             <br>
             <input type="submit" value="Registrar">
