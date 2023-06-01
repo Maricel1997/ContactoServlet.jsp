@@ -22,8 +22,8 @@ public class Conexion {
     
     public Conexion(){
         this.jdbcURL = "jdbc:mysql://localhost:3306/contacto?useSSL=false";
-        this.jdbcUsername = "admin"; //root
-        this.jdbcPassword = "@0123456789";
+        this.jdbcUsername = "root"; //root
+        this.jdbcPassword = "uninorte123";
     }
     
     public void conectar() throws SQLException{
@@ -31,7 +31,7 @@ public class Conexion {
             try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
             }catch (ClassNotFoundException e){
-                throw new SQLException(e);
+                throw new SQLException(  e);
             }
             jdbcConnection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
         }
