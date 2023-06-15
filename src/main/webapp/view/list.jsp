@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 17 may. 2023, 19:47:13
+    Document   : list
+    Created on : 14 jun. 2023, 21:07:49
     Author     : Usuario
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>HOLA MUNDO!</h1>
+        <h1>Hello World!</h1>
     </body>
 </html>

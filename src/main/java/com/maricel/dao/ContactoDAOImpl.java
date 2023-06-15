@@ -31,7 +31,6 @@ public class ContactoDAOImpl implements ContactoDao {
         String consulta = "SELECT * FROM contactos";
         // Listado de datos que se retorna
         List<Contacto> listado = new LinkedList<>();
-
         try {
             this.objConexion.conectar();
             this.objConnection = this.objConexion.getJdbcConnection();
@@ -94,17 +93,93 @@ public class ContactoDAOImpl implements ContactoDao {
 
     @Override
     public Contacto findById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     String consulta = "SELECT * FROM contastos WHERE id=?";  
+     Contacto objContacto = new Contacto();
+     try {
+         this.objConexion.conectar();
+         this.objConnection = objConexion.getJdbcConnection();
+         PreparedStatement prest = this.objConnection.prepareStatement(consulta);
+         prest.setInt(1,id);
+         //SELECTT * FROM contactos WHERE id=25
+         ResultSet rs = prest.executeQuery(consulta);
+         
+         while (rs.next()) {
+                objContacto.setId(rs.getInt("id"));
+                objContacto.setNombre(rs.getString("nombre"));
+                objContacto.setApellido(rs.getString("apellido"));
+                objContacto.setEmail(rs.getString("email"));
+                objContacto.setDescripcion(rs.getString("descripcion"));
+                
+              
+         }
+         
+         }catch(Exception e){
+             System.out.println("Error en findById" + e);
+             
+     }
+         
+     return objContacto;
+     
+     
+        
     }
+    
 
     @Override
     public Contacto updateById(Integer id, Contacto objContacto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     String consulta = "UPDA contactos SET nombre=?, apellido=?, email=?, descripcion=? WHERE id=?";
+     
+     try{
+         this.objConexion.conectar();
+         this.objConnection = objConexion.getJdbcConnection();
+         PreparedStatement prest = this.objConnection.prepareStatement(consulta);
+         
+          prest.setString(1,objContacto.getNombre());
+          prest.setString(2,objContacto.getApellido());
+          prest.setString(3,objContacto.getEmail());
+          prest.setString(4,objContacto.getDescripcion());
+          prest.setInt(5, id);
+          int resultado = prest.executeUpdate();
+          
+          if(resultado == 1){
+              System.out.println("Actualizacion sastifactoria");
+              objContacto.setId(id);
+          
+          
+             }else{
+             objContacto.setId(0); 
+             System.out.println("No se actualizo el registro");
+          }
+          
+     }catch(Exception e){
+          System.out.println("Error en updaById" + e);
+     }
+     return objContacto;
     }
 
     @Override
     public Boolean deleteById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        String consulta = "DELET * FROM contactos WHERE id=?";
+        Boolean returnValue = false;
+        try{
+            this.objConexion.conectar();
+            this.objConnection = objConexion.getJdbcConnection();
+            PreparedStatement prest = this.objConnection.prepareStatement(consulta);
+            prest.setInt(1,id);
+            
+            int resultado = prest.executeUpdate();
+            
+            if(resultado > 0){
+                returnValue = true;
+                
+            }
+            System.out.println("Eliminacion Sastifactoria");
+            
+        }catch(Exception e){
+           System.out.println("Error en deletById" + e);
+        }
+        
+        return returnValue;
+        }
 
 }

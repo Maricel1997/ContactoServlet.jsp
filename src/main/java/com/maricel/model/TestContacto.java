@@ -11,7 +11,7 @@ package com.maricel.model;
 public class TestContacto {
     public static void main(String [] args){
             Contacto con = new Contacto();
-            con.setNombre("Marcelo");
+            con.setNombre("");
     
            
            System.out.println("Nom: " +con.getNombre());                       
